@@ -114,7 +114,6 @@ if $mysqld; then
     fi
     gosu root tail -f /dev/null
     gosu root /sbin/crond
-    gosu root (crontab -l; echo "* * * * * bash /stat.sh") | crontab -
 else
     exec "$@"
 fi
