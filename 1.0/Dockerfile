@@ -52,8 +52,8 @@ RUN yum install -y \
     socat \
     jemalloc
 RUN yum install -y openssh-server
-RUN yum install -y nc
-RUN yum install -y cronie
+# RUN yum install -y nc
+# RUN yum install -y cronie
 
 ENV WSREP_ON=ON
 ENV WSREP_PROVIDER=/usr/lib64/galera/libgalera_smm.so
@@ -71,7 +71,7 @@ ENV MYSQL_ROOT_PASSWORD=temppassword
 
 # add docker-entrypoint script
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
-ADD ./stat.sh /stat.sh
+# ADD ./stat.sh /stat.sh
 
 VOLUME ["var/lib/mysql"]
 
@@ -79,6 +79,7 @@ VOLUME ["var/lib/mysql"]
 # 4444: State snapshot transfer
 # 4567: Galera Cluster
 # 4568: Incremental state transfer
+# 22: Port ssh
 EXPOSE 22 3306 4444 4567 4568
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
