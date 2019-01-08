@@ -8,7 +8,7 @@ usage=false
 verbose=false
 sqlfile=''
 mysqld=false
-su_user=false
+# su_user=false
 
 _server_cnf() {
     echo "set /etc/my.cnf.d/server.cnf"
@@ -78,13 +78,6 @@ do
     fi
 done
 
-for var in "$@"
-do
-    if [[ "${var}" = 'priv' ]]; then
-        su_user=true
-    fi
-done
-
 if $mysqld; then
     if $usage; then
         _usage
@@ -108,9 +101,9 @@ if $mysqld; then
         gosu root /etc/init.d/mysql start
     fi
     
-    if $su_user; then
+    # if $su_user; then
         #gosu root /usr/sbin/init
-    fi
+    # fi
     
     if $verbose; then
         echo "[MySQL]> SHOW VARIABLES LIKE 'wsrep%';"
@@ -121,7 +114,7 @@ if $mysqld; then
     fi
     gosu root tail -f /dev/null
     
-    (crontab -l; echo "* * * * * bash /stat.sh") | crontab -
+    #(crontab -l; echo "* * * * * bash /stat.sh") | crontab -
 else
     exec "$@"
 fi
