@@ -1,2 +1,2 @@
-# stage_licence_docker-
+# stage_licence_docker
 Stage de licence
