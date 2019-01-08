@@ -74,13 +74,13 @@ ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 ADD ./stat.sh /stat.sh
 
 VOLUME ["var/lib/mysql"]
-
+# 1234: stat
 # 3306: MariaDB client connections
 # 4444: State snapshot transfer
 # 4567: Galera Cluster
 # 4568: Incremental state transfer
 # 22: Port ssh
-EXPOSE 22 3306 4444 4567 4568
+EXPOSE 22 1234 3306 4444 4567 4568
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["-i", "mysqld"]
