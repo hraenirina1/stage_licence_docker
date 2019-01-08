@@ -113,7 +113,6 @@ if $mysqld; then
         gosu root ss -lntu
     fi
     gosu root tail -f /dev/null
-    gosu root /sbin/crond
 else
     exec "$@"
 fi
